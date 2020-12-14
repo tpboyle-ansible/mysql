@@ -1,2 +1,6 @@
 ---
+galaxy_info:
+  author: Patrick Boyle
+  description: Installs and secures MySQL server.
+  license: BSD
 dependencies: []
