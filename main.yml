@@ -1,0 +1,7 @@
+---
+- name: Install MySQL.
+  hosts: all
+  become: yes
+
+  tasks:
+    - include_tasks: tasks/main.yml

@@ -1,9 +1,5 @@
 ---
 
-# - name: MySQL repos are installed (RedHat-based distros).
-#   include_tasks: install-redhat.yml
-#   when: os_family == "RedHat/CentOS"
-
 - name: MySQL installation script has run (Debian-based distros).
   include_tasks: install-debian.yml
   when: os_family == "Ubuntu/Debian"
