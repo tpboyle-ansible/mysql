@@ -1,0 +1,26 @@
+---
+
+- name: import secure mysql credentials.
+  include_vars: root.yml
+
+- name: mysqld root password has been set.
+  mysql_user:
+    login_user: "root"
+    login_password: "{{ mysql_root_password }}"
+    host: localhost
+    user: root
+    password: "{{ mysql_root_password }}"
+
+- name: root user has been secured on all domains.
+  mysql_user: 
+    login_user: "root"
+    login_password: "{{ mysql_root_password }}"
+    user: "root"
+    password: "{{ mysql_root_password }}"
+    host: "{{ item.name }}"
+  with_items:
+    - name: "::1"
+    - name: "127.0.0.1"
+    - name: "localhost"
+    - name: "{{ ansible_fqdn }}"
+

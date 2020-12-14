@@ -1,0 +1,36 @@
+---
+
+# Ansible interpretation of mysql_secure_installation.
+
+# - name: Retrieve secure mysql variables.
+#   include_vars: secure.yml
+
+
+## 1) Root user has been secured.
+
+- name: mysql root user has been secured.
+  include_tasks: root.yml
+
+
+## 2) Anonmous user has been removed.
+
+- name: anonymous user has been removed.
+  mysql_user: 
+    login_user: "root"
+    login_password: "{{ mysql_root_password }}"
+    user: ""
+    host: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "{{ ansible_fqdn }}"
+    - "localhost"
+
+
+## 3) Test database has been removed.
+
+- name: the test database has been removed.
+  mysql_db:
+    login_user: "root"
+    login_password: "{{ mysql_root_password }}"
+    state: absent
+    db: test

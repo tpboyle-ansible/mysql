@@ -1,0 +1,14 @@
+---
+
+- name: mysql-server is installed.
+  apt:
+    state: present
+    name: 
+      - mysql-server
+
+- name: Python MySQL support has been installed.
+  apt:
+    state: present
+    name: 
+      - python-mysqldb
+
